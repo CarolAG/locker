@@ -1,0 +1,8 @@
+body{
+  background: #ADD8E6;
+}
+#dropZone{
+  height: 100px;
+  width: 100px;
+  background-color: #eef7fa;
+}
