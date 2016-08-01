@@ -1,5 +1,5 @@
 'use strict'
-const readFile = require('readFile.js')
+//const readFile = require('readFile.js')
 
 	//check if the File API is available and call an Init() function
 	if (window.File && window.FileList && window.FileReader && window.Blob) {
@@ -21,16 +21,15 @@ const readFile = require('readFile.js')
 	function dropHandler (ev){
 	  ev.preventDefault();
 	  ev.stopPropagation();
-
-	  var files = ev.dataTransfer.files; //FileList object that contains a list of
+	  const files = ev.dataTransfer.files; //FileList object that contains a list of
 	  //all files available on data Transfer
 		console.log('files🚗', files);
-
-		readFile(files)
+		//console.log('readFile',readFile)
 
 		// files is a FileList of File objects. List some properties.
-		var output = [];
-		for (var i = 0, f; f = files[i]; i++) {
+		const output = [];
+		
+		for (var i = 0,f; f = files[i]; i++) {
 			//creating an output string for user to see that gives some info of file
 			//they've dropped
 			output.push('<li><strong>', escape(f.name),'</strong>',' (', f.type || 'n/a', ') - ',
@@ -41,9 +40,9 @@ const readFile = require('readFile.js')
 		document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
 	}
 
-	var dropZone = document.getElementById('dropZone');
+	const dropZone = document.getElementById('dropZone');
 	  dropZone.addEventListener('dragover', allowDrop, false);
 	  dropZone.addEventListener('drop', dropHandler, false);
 	//addEventListener takes in 3 arguments:
 	// document.addEventListener(event, function, useCapture)
-	//events reference https://developer.mozilla.org/en-US/docs/Web/Events
+	//events reference

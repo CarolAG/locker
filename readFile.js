@@ -1,8 +1,8 @@
 'use strict'
-const fs = require ('fs');
+const fs = require('fs');
 
 function readFiles(fileListObj){
-  console.log('fileListObj',fileListObj);
+  console.log('fileListObj');
 }
 
-module.exports = readFiles
+module.exports = readFiles;
