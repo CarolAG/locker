@@ -21176,6 +21176,10 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _readFiles = __webpack_require__(174);
+
+	var _readFiles2 = _interopRequireDefault(_readFiles);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21183,6 +21187,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	//const readFiles = require('../readFiles');
 
 	var DropZone = function (_React$Component) {
 	  _inherits(DropZone, _React$Component);
@@ -21215,10 +21221,11 @@
 	    value: function dropHandler(ev) {
 	      ev.preventDefault();
 	      ev.stopPropagation();
+	      var fileReader = new FileReader();
 	      var files = ev.dataTransfer.files; //FileList object that contains a list of
 	      //all files available on data Transfer
 	      console.log('files🚗', files);
-	      //console.log('readFile',readFile)
+	      //console.log('readFile', readFiles(files))
 
 	      // files is a FileList of File objects. List some properties.
 	      var output = [];
@@ -21230,6 +21237,13 @@
 	      }
 	      //escape deprecated
 	      document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+
+	      //console.log('fileReader', fileReader.readAsDataURL(files));
+
+	      //*** Doing post req of file to server**//
+	      $.post('/b', JSON.stringify(files), function (data, status) {
+	        console.log("Data: " + data + "\nStatus: " + status);
+	      });
 	    }
 	  }, {
 	    key: 'componentDidMount',
@@ -21262,10 +21276,25 @@
 	//adding the lifecycle Component componentDidMount and doing it as above.
 	//Another
 	//is adding the event listeners to the div itself, but then you have to use the
-	//React evenlistener words for drop and dragover, which are onDragOver and onDrop.
+	//React eventlistener words for drop and dragover, which are onDragOver and onDrop.
 	//and bind the methods,
 	//As shown below
 	//< div id= {this.props.dropZone} onDragOver ={this.allowDrop.bind(this)} onDrop ={this.dropHandler.bind(this)}></div>
+
+/***/ },
+/* 174 */
+/***/ function(module, exports) {
+
+	'use strict';
+	//const fs = require('fs')
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	function readFiles(fileListObj) {
+	  return fileListObj;
+	}
+	exports.default = readFiles;
 
 /***/ }
 /******/ ]);

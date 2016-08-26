@@ -5,7 +5,7 @@ module.exports = {
     app:["./app/components/app.jsx"]
   },
   output: {
-    path: path.resolve(__dirname, './build'),
+    path: path.resolve(__dirname, './client'),
     filename: '/bundle.js'
   },
 

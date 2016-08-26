@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import readFiles from '../../readFiles';
+//const readFiles = require('../readFiles');
 
 class DropZone extends React.Component{
   constructor(props){
@@ -23,10 +25,11 @@ class DropZone extends React.Component{
   dropHandler(ev){
     ev.preventDefault();
     ev.stopPropagation();
+    const fileReader = new FileReader();
     const files = ev.dataTransfer.files; //FileList object that contains a list of
     //all files available on data Transfer
     console.log('files🚗', files);
-    //console.log('readFile',readFile)
+    //console.log('readFile', readFiles(files))
 
     // files is a FileList of File objects. List some properties.
     const output = [];
@@ -40,7 +43,16 @@ class DropZone extends React.Component{
     }
     //escape deprecated
     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+
+    //console.log('fileReader', fileReader.readAsDataURL(files));
+
+    //*** Doing post req of file to server**//
+    $.post('/b',JSON.stringify(files), function(data, status){
+      console.log("Data: " + data + "\nStatus: " + status);
+    });
+
   }
+
   componentDidMount(){
     window.addEventListener('dragover', this.allowDrop)
     window.addEventListener('drop', this.dropHandler)
@@ -62,7 +74,7 @@ export default DropZone;
 //adding the lifecycle Component componentDidMount and doing it as above.
 //Another
 //is adding the event listeners to the div itself, but then you have to use the
-//React evenlistener words for drop and dragover, which are onDragOver and onDrop.
+//React eventlistener words for drop and dragover, which are onDragOver and onDrop.
 //and bind the methods,
 //As shown below
 //< div id= {this.props.dropZone} onDragOver ={this.allowDrop.bind(this)} onDrop ={this.dropHandler.bind(this)}></div>
