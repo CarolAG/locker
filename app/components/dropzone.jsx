@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import readFiles from '../../readFiles';
 //const readFiles = require('../readFiles');
+//const Webtorrent = require('webtorrent');
+import Webtorrent from 'webtorrent';
 
 class DropZone extends React.Component{
   constructor(props){
@@ -25,6 +27,8 @@ class DropZone extends React.Component{
   dropHandler(ev){
     ev.preventDefault();
     ev.stopPropagation();
+    //const client = new Webtorrent();
+
     const fileReader = new FileReader();
     const files = ev.dataTransfer.files; //FileList object that contains a list of
     //all files available on data Transfer
@@ -43,14 +47,7 @@ class DropZone extends React.Component{
     }
     //escape deprecated
     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-
-    //console.log('fileReader', fileReader.readAsDataURL(files));
-
-    //*** Doing post req of file to server**//
-    $.post('/b',JSON.stringify(files), function(data, status){
-      console.log("Data: " + data + "\nStatus: " + status);
-    });
-
+    // console.log('client', client);
   }
 
   componentDidMount(){
