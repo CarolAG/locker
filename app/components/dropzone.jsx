@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom'
 import readFiles from '../../readFiles';
 //const readFiles = require('../readFiles');
 //const Webtorrent = require('webtorrent');
-import Webtorrent from 'webtorrent';
+// import WebTorrent from 'webtorrent';
+var client = WebTorrent();
+console.log('webtorrent', client);
 
 class DropZone extends React.Component{
   constructor(props){
@@ -27,14 +29,12 @@ class DropZone extends React.Component{
   dropHandler(ev){
     ev.preventDefault();
     ev.stopPropagation();
-    //const client = new Webtorrent();
-
     const fileReader = new FileReader();
     const files = ev.dataTransfer.files; //FileList object that contains a list of
+
     //all files available on data Transfer
     console.log('files🚗', files);
     //console.log('readFile', readFiles(files))
-
     // files is a FileList of File objects. List some properties.
     const output = [];
 
@@ -47,7 +47,11 @@ class DropZone extends React.Component{
     }
     //escape deprecated
     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-    // console.log('client', client);
+
+   //console.log('client🍒', client);
+  //  client.seed(files, function(torrent){
+  //   console.log('Client is seeding:', torrent.infoHash)
+  //  })
   }
 
   componentDidMount(){

@@ -8,10 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, './client'),
     filename: '/bundle.js'
   },
-  target: 'web',
-  node:{
-    fs:'empty'
-  },
+
 
   module: {
     loaders: [
@@ -21,9 +18,6 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         }
-      },
-      {  
-        loader:'json-loader'
       }
     ]
   }
