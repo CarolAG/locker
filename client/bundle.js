@@ -21192,7 +21192,7 @@
 	//const Webtorrent = require('webtorrent');
 	// import WebTorrent from 'webtorrent';
 	var client = WebTorrent();
-	console.log('webtorrent', client);
+	//console.log('Webtorrent Client', client);
 
 	var DropZone = function (_React$Component) {
 	  _inherits(DropZone, _React$Component);
@@ -21242,10 +21242,10 @@
 	      //escape deprecated
 	      document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
 
-	      //console.log('client🍒', client);
-	      //  client.seed(files, function(torrent){
-	      //   console.log('Client is seeding:', torrent.infoHash)
-	      //  })
+	      console.log('client🍒', client);
+	      client.seed(files, function (torrent) {
+	        console.log('Client is seeding:', torrent.infoHash);
+	      });
 	    }
 	  }, {
 	    key: 'componentDidMount',
